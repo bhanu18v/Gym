@@ -74,7 +74,7 @@ namespace Gym.Controllers
 
             return View(gymClass);
         }
-
+           
         // GET: GymClasses/Edit/5
         public ActionResult Edit(int? id)
         {
