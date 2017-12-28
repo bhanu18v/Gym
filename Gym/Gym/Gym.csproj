@@ -177,6 +177,22 @@
     <Compile Include="Migrations\201712271336338_Init.Designer.cs">
       <DependentUpon>201712271336338_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712281058029_swe.cs" />
+    <Compile Include="Migrations\201712281058029_swe.Designer.cs">
+      <DependentUpon>201712281058029_swe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712281102141_swes.cs" />
+    <Compile Include="Migrations\201712281102141_swes.Designer.cs">
+      <DependentUpon>201712281102141_swes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712281210588_sweq.cs" />
+    <Compile Include="Migrations\201712281210588_sweq.Designer.cs">
+      <DependentUpon>201712281210588_sweq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712281218167_sweqa.cs" />
+    <Compile Include="Migrations\201712281218167_sweqa.Designer.cs">
+      <DependentUpon>201712281218167_sweqa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\GymClass.cs" />
@@ -243,6 +259,7 @@
     <Content Include="Views\GymClasses\Edit.cshtml" />
     <Content Include="Views\GymClasses\Index.cshtml" />
     <Content Include="Views\GymClasses\Attend.cshtml" />
+    <Content Include="Views\GymClasses\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -258,6 +275,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201712271336338_Init.resx">
       <DependentUpon>201712271336338_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712281058029_swe.resx">
+      <DependentUpon>201712281058029_swe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712281102141_swes.resx">
+      <DependentUpon>201712281102141_swes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712281210588_sweq.resx">
+      <DependentUpon>201712281210588_sweq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712281218167_sweqa.resx">
+      <DependentUpon>201712281218167_sweqa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

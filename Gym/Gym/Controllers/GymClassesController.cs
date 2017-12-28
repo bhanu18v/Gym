@@ -10,14 +10,26 @@ using Gym.Models;
 
 namespace Gym.Controllers
 {
+    [Authorize]
     public class GymClassesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: GymClasses
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.GymClasses.ToList());
+        }
+
+        [AllowAnonymous]
+        public ActionResult Logout()
+        {
+            //
+            Session.Clear();
+            //       FormsAuthentication.SignOut();
+            //        Redirect("http://AnotherApplicaton/Home/LogOut");
+            return View();
         }
 
         public ActionResult BookingToggle(int id)
@@ -76,18 +88,21 @@ namespace Gym.Controllers
         }
            
         // GET: GymClasses/Edit/5
+        
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            GymClass gymClass = db.GymClasses.Find(id);
-            if (gymClass == null)
-            {
-                return HttpNotFound();
-            }
-            return View(gymClass);
+            
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                GymClass gymClass = db.GymClasses.Find(id);
+                if (gymClass == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(gymClass);
+            
         }
 
         // POST: GymClasses/Edit/5
@@ -97,13 +112,14 @@ namespace Gym.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,StartTime,Duration,Description")] GymClass gymClass)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(gymClass).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(gymClass);
+              if (ModelState.IsValid)
+                {
+                    db.Entry(gymClass).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(gymClass);
+                    
         }
 
         // GET: GymClasses/Delete/5

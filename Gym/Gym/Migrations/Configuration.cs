@@ -1,5 +1,8 @@
 namespace Gym.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;   // using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -25,7 +28,26 @@ namespace Gym.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
-            //
+ 
+
+            if (!context.Users.Any(u => u.UserName == "admin@GymBooking.se"))
+            {
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager1 = new UserManager<ApplicationUser>(userStore);
+                var user = new ApplicationUser { UserName = "admin@GymBooking.se" };
+
+                userManager1.Create(user, "password");
+                roleManager.Create(new IdentityRole {Name = "admin" });
+                userManager1.AddToRole(user.Id, "admin");
+            }
+
+
+
+
+
+
         }
     }
 }
