@@ -32,25 +32,51 @@ namespace Gym.Controllers
             return View();
         }
 
-        public ActionResult BookingToggle(int id)
+        public ActionResult BookingToggleAttend(int id)
         {
             GymClass CurrentClass = db.GymClasses.Where(g => g.Id==id).FirstOrDefault();
             ApplicationUser CurrentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+            GymClass ExistingUser = db.GymClasses.Find(CurrentUser);
+            if (ExistingUser.AttendingMembers.Count > 0)
+            {
+                CurrentClass.AttendingMembers.Remove(CurrentUser);
+                   db.SaveChanges();
+            }
             if (CurrentClass.AttendingMembers.Contains(CurrentUser))
             {
                 CurrentClass.AttendingMembers.Remove(CurrentUser);
                 db.SaveChanges();
+                
             }
-            else
-            {
-                CurrentClass.AttendingMembers.Add(CurrentUser);
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index");
-        }
 
-        // GET: GymClasses/Details/5
-        public ActionResult Details(int? id)
+         return RedirectToAction("Index");
+
+    }
+            //else
+            //{
+            //    CurrentClass.AttendingMembers.Add(CurrentUser);
+            //    db.SaveChanges();
+            //}
+           
+      
+    public ActionResult BookingToggleCancel(int id)
+    {
+
+        GymClass CurrentClass = db.GymClasses.Where(g => g.Id == id).FirstOrDefault();
+        ApplicationUser CurrentUser = db.Users.Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
+        if (CurrentClass.AttendingMembers.Contains(CurrentUser))
+        {
+            CurrentClass.AttendingMembers.Remove(CurrentUser);
+            db.SaveChanges();
+        }
+        return RedirectToAction("Index");
+
+    }
+
+
+
+    // GET: GymClasses/Details/5
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {

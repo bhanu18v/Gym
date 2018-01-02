@@ -45,9 +45,10 @@
             @Html.DisplayNameFor(model => model.AttendingMembers)
         </dt>
         @foreach (var AttendingMember in Model.AttendingMembers)
-        {
+        { 
             <dd>
-                @AttendingMember.Email
+                @*@AttendingMember.Email*@
+                @AttendingMember.FullName
             </dd>
         }
 
@@ -55,6 +56,6 @@
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
     @Html.ActionLink("Back to List", "Index")
 </p>
